@@ -7,7 +7,7 @@ let pasien = {
     getDataPasien : async(req, res) => {
         let nik = req.body.nik
         try {
-            let qry =  `SELECT * FROM dataPasien WHERE NIK = ${nik}`
+            let qry =  `SELECT * FROM pasien WHERE NIK = ${nik}`
             let hasil = await connection.execQry(qry)
             let response = {
                 code: 200,
@@ -27,15 +27,83 @@ let pasien = {
         }
     },
     addDataPasien : async(req, res) => {
-        let nik = req.body.nik
-        
+        let IDPasien = req.body.IDPasien
+        let tglPenerimaan = req.body.tglPenerimaan
+        let waktuPenerimaan = req.body.waktuPenerimaan
+        let tglPemeriksaan = req.body.tglPemeriksaan
+        let pengirim = req.body.pengirim
+        let namaPasien = req.body.namaPasien
+        let NIK = req.body.NIK
+        let tglLahir = req.body.tglLahir
+        let jenisSpecimen = req.body.jenisSpecimen
+        let pemeriksaan = req.body.pemeriksaan
+
         try {
-            let qry =  `SELECT * FROM dataPasien WHERE NIK = ${nik}`
+            let qry = `INSERT INTO pasien (IDPasien, tglPenerimaan, waktuPenerimaan,tglPemeriksaan, pengirim, namaPasien,NIK, tglLahir, jenisSpecimen, pemeriksaan) 
+            VALUES ('${IDPasien}','${tglPenerimaan}','${waktuPenerimaan}','${tglPemeriksaan}','${pengirim}','${namaPasien}','${NIK}','${tglLahir}','${jenisSpecimen}','${pemeriksaan}')`;
+
             let hasil = await connection.execQry(qry)
             let response = {
                 code: 200,
-                message: 'success',
-                data: hasil
+                message: `data ${namaPasien} berhasil di input.`
+            };
+            res.status(200).send(response)
+            return hasil
+        } catch (error) {
+            console.log(error);
+            let response = {
+                code: 400,
+                message: 'error',
+                data: error
+            };
+            res.status(400).send(response)
+        }
+    },
+    updateDataPasien : async(req, res) => {
+        let IDPasien = req.body.IDPasien
+        let tglPenerimaan = req.body.tglPenerimaan
+        let waktuPenerimaan = req.body.waktuPenerimaan
+        let tglPemeriksaan = req.body.tglPemeriksaan
+        let pengirim = req.body.pengirim
+        let namaPasien = req.body.namaPasien
+        let NIK = req.body.NIK
+        let tglLahir = req.body.tglLahir
+        let jenisSpecimen = req.body.jenisSpecimen
+        let pemeriksaan = req.body.pemeriksaan
+
+        try {
+            let qry = `UPDATE pasien
+                        SET tglPenerimaan = '${tglPenerimaan}', waktuPenerimaan = '${waktuPenerimaan}',
+                        tglPemeriksaan = '${tglPemeriksaan}', pengirim = '${pengirim}',
+                        namaPasien = '${namaPasien}' ,NIK = '${NIK}', tglLahir = '${tglLahir}',
+                         jenisSpecimen = '${jenisSpecimen}', pemeriksaan = '${pemeriksaan}'
+                        WHERE IDPasien='${IDPasien}'`;
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: `data ID : ${IDPasien} berhasil di update.`
+            };
+            res.status(200).send(response)
+            return hasil
+        } catch (error) {
+            console.log(error);
+            let response = {
+                code: 400,
+                message: 'error',
+                data: error
+            };
+            res.status(400).send(response)
+        }
+    },
+    deleteDataPasien : async(req, res) => {
+        let IDPasien = req.body.IDPasien
+        try {
+            let qry = `DELETE FROM pasien WHERE IDPasien='${IDPasien}'`;
+
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: `data ID : ${IDPasien} berhasil di hapus.`
             };
             res.status(200).send(response)
             return hasil
@@ -50,6 +118,35 @@ let pasien = {
         }
     },
     
+    
 }
 
-module.exports = pasien
+let user = {
+    updateDataUser : async(req, res) => {
+        let NoPegawai = req.body.NoPegawai
+        let username = req.body.username
+        let password = req.body.password
+
+        try {
+            let qry = `UPDATE user
+                        SET username = '${username}', password = '${password}'
+                        WHERE NoPegawai='${NoPegawai}'`;
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: `data NoPegawai : ${NoPegawai} berhasil di update.`
+            };
+            res.status(200).send(response)
+            return hasil
+        } catch (error) {
+            console.log(error);
+            let response = {
+                code: 400,
+                message: 'error',
+                data: error
+            };
+            res.status(400).send(response)
+        }
+    },
+}
+module.exports = {pasien, user}
