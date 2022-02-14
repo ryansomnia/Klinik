@@ -198,5 +198,29 @@ let user = {
             res.status(400).send(response)
         }
     },
+    login : async(req, res) => {
+        let username = req.body.username
+        let password = req.body.password
+
+        try {
+            let qry = `CALL login('${username}','${password}') `;
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: `succes login`,
+                data:username
+            };
+            res.status(200).send(response)
+            return hasil
+        } catch (error) {
+            console.log(error);
+            let response = {
+                code: 400,
+                message: 'error',
+                data: error
+            };
+            res.status(400).send(response)
+        }
+    },
 }
 module.exports = {pasien, QR, user}
