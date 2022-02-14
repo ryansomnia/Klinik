@@ -7,6 +7,7 @@ let pasien = {
     getDataPasien : async(req, res) => {
         let nik = req.body.nik
         try {
+            //JOIN detail
             let qry =  `SELECT * FROM pasien WHERE NIK = ${nik}`
             let hasil = await connection.execQry(qry)
             let response = {
@@ -26,6 +27,7 @@ let pasien = {
             res.status(400).send(response)
         }
     },
+    //get all
     addDataPasien : async(req, res) => {
         let IDPasien = req.body.IDPasien
         let tglPenerimaan = req.body.tglPenerimaan
@@ -120,7 +122,55 @@ let pasien = {
     
     
 }
+let QR = {
+    generateLink : async(req, res) => {
+        let IDPasien = req.body.IDPasien
+        let tglPenerimaan = req.body.tglPenerimaan
+        let waktuPenerimaan = req.body.waktuPenerimaan
+        let tglPemeriksaan = req.body.tglPemeriksaan
+        let pengirim = req.body.pengirim
+        let namaPasien = req.body.namaPasien
+        let NIK = req.body.NIK
+        let tglLahir = req.body.tglLahir
+        let jenisSpecimen = req.body.jenisSpecimen
+        let pemeriksaan = req.body.pemeriksaan
 
+        try {
+            let qry = `CALL generateLink ('${IDPasien}','${tglPenerimaan}','${waktuPenerimaan}','${tglPemeriksaan}','${pengirim}','${namaPasien}','${NIK}','${tglLahir}','${jenisSpecimen}','${pemeriksaan}')`;
+
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: `data ${namaPasien} berhasil di generate`,
+                link: `8.215.37.21:5021/globaldoctor/pasien/getDataPasien?nik=${NIK}`
+            };
+            res.status(200).send(response)
+            return hasil
+
+        } catch (error) {
+        }
+    },
+    callData : async(req, res) => {
+        let NIK = req.params.NIK
+        console.log(NIK);
+        // param ngapa ga bisa ya?
+
+        try {
+            let qry = `SELECT * FROM pasien WHERE NIK ='${NIK}'`
+            //join
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: `success`,
+                data:hasil
+            };
+            res.status(200).send(response)
+            return hasil
+
+        } catch (error) {
+        }
+    },
+}
 let user = {
     updateDataUser : async(req, res) => {
         let NoPegawai = req.body.NoPegawai
@@ -149,4 +199,4 @@ let user = {
         }
     },
 }
-module.exports = {pasien, user}
+module.exports = {pasien, QR, user}
