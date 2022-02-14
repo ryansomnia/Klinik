@@ -10,8 +10,11 @@
 			"item": [
 				{
 					"name": "getDataPasien",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
@@ -19,20 +22,30 @@
 								{
 									"key": "nik",
 									"value": "300000000001",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:5021/globaldoctor/pasien/getDataPasien",
+							"raw": "8.215.37.21:5021/globaldoctor/pasien/getDataPasien?nik=300000000001",
 							"host": [
-								"localhost"
+								"8",
+								"215",
+								"37",
+								"21"
 							],
 							"port": "5021",
 							"path": [
 								"globaldoctor",
 								"pasien",
 								"getDataPasien"
+							],
+							"query": [
+								{
+									"key": "nik",
+									"value": "300000000001"
+								}
 							]
 						}
 					},
@@ -129,9 +142,12 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:5021/globaldoctor/pasien/addDataPasien",
+							"raw": "8.215.37.21:5021/globaldoctor/pasien/addDataPasien",
 							"host": [
-								"localhost"
+								"8",
+								"215",
+								"37",
+								"21"
 							],
 							"port": "5021",
 							"path": [
@@ -222,7 +238,22 @@
 					"name": "getAllDataPasien",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "8.215.37.21:5021/globaldoctor/pasien/getAllDataPasien",
+							"host": [
+								"8",
+								"215",
+								"37",
+								"21"
+							],
+							"port": "5021",
+							"path": [
+								"globaldoctor",
+								"pasien",
+								"getAllDataPasien"
+							]
+						}
 					},
 					"response": []
 				}
@@ -257,9 +288,12 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:5021/globaldoctor/pasien/updateDataUser",
+							"raw": "8.215.37.21:5021/globaldoctor/pasien/updateDataUser",
 							"host": [
-								"localhost"
+								"8",
+								"215",
+								"37",
+								"21"
 							],
 							"port": "5021",
 							"path": [
@@ -274,41 +308,42 @@
 				{
 					"name": "login",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "update",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "update",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "8.215.37.21:5021/globaldoctor/user/login",
+							"host": [
+								"8",
+								"215",
+								"37",
+								"21"
+							],
+							"port": "5021",
+							"path": [
+								"globaldoctor",
+								"user",
+								"login"
+							]
+						}
 					},
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "8.215.37.21:5021/globaldoctor/pasien/getDataPasien?nik=300000000001",
-					"host": [
-						"8",
-						"215",
-						"37",
-						"21"
-					],
-					"port": "5021",
-					"path": [
-						"globaldoctor",
-						"pasien",
-						"getDataPasien"
-					],
-					"query": [
-						{
-							"key": "nik",
-							"value": "300000000001"
-						}
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
