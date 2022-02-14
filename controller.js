@@ -27,7 +27,28 @@ let pasien = {
             res.status(400).send(response)
         }
     },
-    //get all
+    getAllDataPasien : async(req, res) => {
+        try {
+            //JOIN detail
+            let qry =  `SELECT * FROM pasien`
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: 'success',
+                data: hasil
+            };
+            res.status(200).send(response)
+            return hasil
+        } catch (error) {
+            console.log(error);
+            let response = {
+                code: 400,
+                message: 'error',
+                data: error
+            };
+            res.status(400).send(response)
+        }
+    },
     addDataPasien : async(req, res) => {
         let IDPasien = req.body.IDPasien
         let tglPenerimaan = req.body.tglPenerimaan

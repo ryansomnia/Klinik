@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "fd137ee8-55c3-473c-beca-fececd1707bc",
+		"name": "klinik",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pasien",
+			"item": [
+				{
+					"name": "getDataPasien",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nik",
+									"value": "300000000001",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5021/globaldoctor/pasien/getDataPasien",
+							"host": [
+								"localhost"
+							],
+							"port": "5021",
+							"path": [
+								"globaldoctor",
+								"pasien",
+								"getDataPasien"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteDataPasien",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "IDPasien",
+									"value": "10002",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5021/globaldoctor/pasien/deleteDataPasien",
+							"host": [
+								"localhost"
+							],
+							"port": "5021",
+							"path": [
+								"globaldoctor",
+								"pasien",
+								"deleteDataPasien"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addDataPasien",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "IDPasien",
+									"value": "10002",
+									"type": "text"
+								},
+								{
+									"key": "tglPenerimaan",
+									"value": "2022-01-01",
+									"type": "text"
+								},
+								{
+									"key": "waktuPenerimaan",
+									"value": "07:00",
+									"type": "text"
+								},
+								{
+									"key": "tglPemeriksaan",
+									"value": "2022-01-01",
+									"type": "text"
+								},
+								{
+									"key": "pengirim",
+									"value": "heriyanto",
+									"type": "text"
+								},
+								{
+									"key": "namaPasien",
+									"value": "lukas",
+									"type": "text"
+								},
+								{
+									"key": "NIK",
+									"value": "300000000001",
+									"type": "text"
+								},
+								{
+									"key": "tglLahir",
+									"value": "1995-01-01",
+									"type": "text"
+								},
+								{
+									"key": "jenisSpecimen",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "pemeriksaan",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5021/globaldoctor/pasien/addDataPasien",
+							"host": [
+								"localhost"
+							],
+							"port": "5021",
+							"path": [
+								"globaldoctor",
+								"pasien",
+								"addDataPasien"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDataPasien",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "IDPasien",
+									"value": "10002",
+									"type": "text"
+								},
+								{
+									"key": "tglPenerimaan",
+									"value": "2022-01-01",
+									"type": "text"
+								},
+								{
+									"key": "waktuPenerimaan",
+									"value": "07:00",
+									"type": "text"
+								},
+								{
+									"key": "tglPemeriksaan",
+									"value": "2022-01-01",
+									"type": "text"
+								},
+								{
+									"key": "pengirim",
+									"value": "heriyanto",
+									"type": "text"
+								},
+								{
+									"key": "namaPasien",
+									"value": "lukas update",
+									"type": "text"
+								},
+								{
+									"key": "NIK",
+									"value": "300000000001",
+									"type": "text"
+								},
+								{
+									"key": "tglLahir",
+									"value": "1995-01-01",
+									"type": "text"
+								},
+								{
+									"key": "jenisSpecimen",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "pemeriksaan",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5021/globaldoctor/pasien/updateDataPasien",
+							"host": [
+								"localhost"
+							],
+							"port": "5021",
+							"path": [
+								"globaldoctor",
+								"pasien",
+								"updateDataPasien"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllDataPasien",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "updateDataPasien Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "NoPegawai",
+									"value": "10001",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "update",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "update",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5021/globaldoctor/pasien/updateDataUser",
+							"host": [
+								"localhost"
+							],
+							"port": "5021",
+							"path": [
+								"globaldoctor",
+								"pasien",
+								"updateDataUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "8.215.37.21:5021/globaldoctor/pasien/getDataPasien?nik=300000000001",
+					"host": [
+						"8",
+						"215",
+						"37",
+						"21"
+					],
+					"port": "5021",
+					"path": [
+						"globaldoctor",
+						"pasien",
+						"getDataPasien"
+					],
+					"query": [
+						{
+							"key": "nik",
+							"value": "300000000001"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
