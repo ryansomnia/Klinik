@@ -5,10 +5,12 @@ const moment = require('moment');
 
 let pasien = {
     getDataPasien : async(req, res) => {
-        let nik = req.body.nik
+        let nik = req.query.nik
+        console.log(nik);
         try {
             //JOIN detail
-            let qry =  `SELECT * FROM pasien WHERE NIK = ${nik}`
+            let qry =  `SELECT * FROM pasien WHERE NIK = ${nik};`;
+            console.log(qry);
             let hasil = await connection.execQry(qry)
             let response = {
                 code: 200,
