@@ -29,6 +29,39 @@ let pasien = {
             res.status(400).send(response)
         }
     },
+    validatePasien : async(req, res) => {
+        let nik = req.body.nik
+        let tglLahir = req.body.tglLahir
+        
+        try {
+            
+            let qry =  `SELECT pasien.tglPenerimaan, pasien.waktuPenerimaan, pasien.tglPemeriksaan, pasien.pengirim, pasien.namaPasien,
+            pasien.NIK, pasien.tglLahir, pasien.jenisSpecimen, pasien.pemeriksaan,
+           detailDokumen.geneTarget, detailDokumen.nilaiCT,
+           kesimpulanPemeriksaan.kesimpulan
+           FROM pasien
+           INNER JOIN detailDokumen ON pasien.IDPasien = detailDokumen.IDPasien
+           INNER JOIN kesimpulanPemeriksaan ON pasien.IDPasien = kesimpulanPemeriksaan.idPasien
+            WHERE pasien.NIK = '${nik}' AND pasien.tglLahir='${tglLahir}';`;
+            console.log(qry);
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: 'success',
+                data: hasil
+            };
+            res.status(200).send(response)
+            return hasil
+        } catch (error) {
+            console.log(error);
+            let response = {
+                code: 400,
+                message: 'error',
+                data: error
+            };
+            res.status(400).send(response)
+        }
+    },
     getAllDataPasien : async(req, res) => {
         try {
             //JOIN detail
