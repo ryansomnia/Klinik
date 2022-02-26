@@ -86,15 +86,115 @@ let pasien = {
     },
     addDataPasien : async(req, res) => {
         let IDPasien = req.body.IDPasien
+        if (IDPasien == 0 || IDPasien == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'IDPasien tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let tglPenerimaan = req.body.tglPenerimaan
+        if (tglPenerimaan == 0 || tglPenerimaan == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'tgl Penerimaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let waktuPenerimaan = req.body.waktuPenerimaan
+        if (waktuPenerimaan == 0 || waktuPenerimaan == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'waktu Penerimaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let tglPemeriksaan = req.body.tglPemeriksaan
+        if (tglPemeriksaan == 0 || tglPemeriksaan == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'tgl Pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let pengirim = req.body.pengirim
+        if (pengirim == 0 || pengirim == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'pengirim tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let namaPasien = req.body.namaPasien
+        if (namaPasien == 0 || namaPasien == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'nama pasien tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let NIK = req.body.NIK
+        if (NIK == 0 || NIK == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'NIK tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let tglLahir = req.body.tglLahir
+        if (tglLahir == 0 || tglLahir == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'tgl lahir tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let jenisSpecimen = req.body.jenisSpecimen
+        if (jenisSpecimen == 0 || jenisSpecimen == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'jenis specimen tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let pemeriksaan = req.body.pemeriksaan
+        if (pemeriksaan == 0 || pemeriksaan == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
 
         try {
             let qry = `INSERT INTO pasien (IDPasien, tglPenerimaan, waktuPenerimaan,tglPemeriksaan, pengirim, namaPasien,NIK, tglLahir, jenisSpecimen, pemeriksaan) 
@@ -180,30 +280,27 @@ let pasien = {
 }
 let QR = {
     generateLink : async(req, res) => {
-        let IDPasien = req.body.IDPasien
-        let tglPenerimaan = req.body.tglPenerimaan
-        let waktuPenerimaan = req.body.waktuPenerimaan
-        let tglPemeriksaan = req.body.tglPemeriksaan
-        let pengirim = req.body.pengirim
-        let namaPasien = req.body.namaPasien
         let NIK = req.body.NIK
-        let tglLahir = req.body.tglLahir
-        let jenisSpecimen = req.body.jenisSpecimen
-        let pemeriksaan = req.body.pemeriksaan
-
         try {
-            let qry = `CALL generateLink ('${IDPasien}','${tglPenerimaan}','${waktuPenerimaan}','${tglPemeriksaan}','${pengirim}','${namaPasien}','${NIK}','${tglLahir}','${jenisSpecimen}','${pemeriksaan}')`;
-
+            let qry = `SELECT * FROM pasien WHERE NIK='${NIK}'`;
             let hasil = await connection.execQry(qry)
             let response = {
                 code: 200,
-                message: `data ${namaPasien} berhasil di generate`,
+                message: `data ${NIK} berhasil di generate`,
                 link: `8.215.37.21:5021/globaldoctor/pasien/getDataPasien?nik=${NIK}`
             };
             res.status(200).send(response)
             return hasil
 
-        } catch (error) {
+        } catch (e) {
+            let err = {
+                code: 400,
+                message: `data ${NIK} tidak ditemukan`,
+                error:e
+            };
+            res.status(400).send(err)
+            return err
+
         }
     },
     callData : async(req, res) => {
@@ -265,6 +362,57 @@ let user = {
                 code: 200,
                 message: `succes login`,
                 data:username
+            };
+            res.status(200).send(response)
+            return hasil
+        } catch (error) {
+            console.log(error);
+            let response = {
+                code: 400,
+                message: 'error',
+                data: error
+            };
+            res.status(400).send(response)
+        }
+    },
+    addAdmin : async(req, res) => {
+        let NoPegawai = req.body.NoPegawai
+        let namaDepan = req.body.namaDepan
+        let namaBelakang = req.body.namaBelakang
+        let username = req.body.username
+        let password = req.body.password
+
+        try {
+            let qry = `INSERT INTO user (NoPegawai, namaDepan, namaBelakang,username, password,jabatan, status) 
+            VALUES (${NoPegawai},${namaDepan},${namaBelakang},${username},${password},'admin','aktif');`;
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: `success menambah admin ${username}`,
+            };
+            res.status(200).send(response)
+            return hasil
+        } catch (error) {
+            console.log(error);
+            let response = {
+                code: 400,
+                message: 'error',
+                data: error
+            };
+            res.status(400).send(response)
+        }
+    },
+    resetPass : async(req, res) => {
+        let username = req.body.username
+        let password = req.body.password
+        let newPassword = req.body.newPassword
+
+        try {
+            let qry = `CALL resetPass('${username}','${password}','${newPassword}')`;
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: `success menambah admin ${username}`,
             };
             res.status(200).send(response)
             return hasil
