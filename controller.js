@@ -6,7 +6,17 @@ const moment = require('moment');
 let pasien = {
     getDataPasien : async(req, res) => {
         let nik = req.query.nik
-        console.log(nik);
+        if (nik == 0 || nik == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'nik tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+
         try {
             //JOIN detail
             let qry =  `SELECT * FROM pasien WHERE NIK = ${nik};`;
@@ -31,7 +41,27 @@ let pasien = {
     },
     validatePasien : async(req, res) => {
         let nik = req.body.nik
+        if (nik == 0 || nik == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'nik tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let tglLahir = req.body.tglLahir
+        if (tglLahir == 0 || tglLahir == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'tgl Lahir tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         
         try {
             
@@ -219,15 +249,115 @@ let pasien = {
     },
     updateDataPasien : async(req, res) => {
         let IDPasien = req.body.IDPasien
+        if (IDPasien == 0 || IDPasien == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'IDPasien tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let tglPenerimaan = req.body.tglPenerimaan
+        if (tglPenerimaan == 0 || tglPenerimaan == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'tgl Penerimaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let waktuPenerimaan = req.body.waktuPenerimaan
+        if (waktuPenerimaan == 0 || waktuPenerimaan == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Waktu Penerimaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let tglPemeriksaan = req.body.tglPemeriksaan
+        if (tglPemeriksaan == 0 || tglPemeriksaan == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'tgl Pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let pengirim = req.body.pengirim
+        if (pengirim == 0 || pengirim == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'pengirim tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let namaPasien = req.body.namaPasien
+        if (namaPasien == 0 || namaPasien == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Nama Pasien tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let NIK = req.body.NIK
+        if (NIK == 0 || NIK == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'NIK tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let tglLahir = req.body.tglLahir
+        if (tglLahir == 0 || tglLahir == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'tgl Lahir tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let jenisSpecimen = req.body.jenisSpecimen
+        if (jenisSpecimen == 0 || jenisSpecimen == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'jenis specimen tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let pemeriksaan = req.body.pemeriksaan
+        if (pemeriksaan == 0 || pemeriksaan == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
 
         try {
             let qry = `UPDATE pasien
@@ -255,6 +385,16 @@ let pasien = {
     },
     deleteDataPasien : async(req, res) => {
         let IDPasien = req.body.IDPasien
+        if (IDPasien == 0 || IDPasien == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'IDPasien tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         try {
             let qry = `DELETE FROM pasien WHERE IDPasien='${IDPasien}'`;
 
@@ -281,6 +421,16 @@ let pasien = {
 let QR = {
     generateLink : async(req, res) => {
         let NIK = req.body.NIK
+        if (NIK == 0 || NIK == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'NIK tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         try {
             let qry = `SELECT * FROM pasien WHERE NIK='${NIK}'`;
             let hasil = await connection.execQry(qry)
@@ -305,8 +455,18 @@ let QR = {
     },
     callData : async(req, res) => {
         let NIK = req.params.NIK
-        console.log(NIK);
-        // param ngapa ga bisa ya?
+        if (NIK == 0 || NIK == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'NIK tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        onsole.log(NIK);
+       
 
         try {
             let qry = `SELECT * FROM pasien WHERE NIK ='${NIK}'`
@@ -327,8 +487,38 @@ let QR = {
 let user = {
     updateDataUser : async(req, res) => {
         let NoPegawai = req.body.NoPegawai
+        if (NoPegawai == 0 || NoPegawai == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'No Pegawai tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let username = req.body.username
+        if (username == 0 || username == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'username tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let password = req.body.password
+        if (password == 0 || password == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'password tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
 
         try {
             let qry = `UPDATE user
@@ -353,7 +543,27 @@ let user = {
     },
     login : async(req, res) => {
         let username = req.body.username
+        if (username == 0 || username == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'username tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let password = req.body.password
+        if (password == 0 || password == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'password tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
 
         try {
             let qry = `CALL login('${username}','${password}') `;
@@ -377,18 +587,68 @@ let user = {
     },
     addAdmin : async(req, res) => {
         let NoPegawai = req.body.NoPegawai
-        let namaDepan = req.body.namaDepan
-        let namaBelakang = req.body.namaBelakang
-        let username = req.body.username
-        let password = req.body.password
+        if (NoPegawai == 0 || NoPegawai == null) {
 
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'No Pegawai tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let namaDepan = req.body.namaDepan
+        if (namaDepan == 0 || namaDepan == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Nama Depan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let namaBelakang = req.body.namaBelakang
+        if (namaBelakang == 0 || namaBelakang == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Nama Belakang tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let username = req.body.username
+        if (username == 0 || username == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'username tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let password = req.body.password
+        if (password == 0 || password == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'password tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        
         try {
             let qry = `INSERT INTO user (NoPegawai, namaDepan, namaBelakang,username, password,jabatan, status) 
             VALUES (${NoPegawai},${namaDepan},${namaBelakang},${username},${password},'admin','aktif');`;
             let hasil = await connection.execQry(qry)
             let response = {
                 code: 200,
-                message: `success menambah admin ${username}`,
+                message: `success menambah admin ${username}`
             };
             res.status(200).send(response)
             return hasil
@@ -404,8 +664,48 @@ let user = {
     },
     resetPass : async(req, res) => {
         let username = req.body.username
+        if (username == 0 || username == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'username tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let password = req.body.password
+        if (password == 0 || password == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'password tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
         let newPassword = req.body.newPassword
+        if (newPassword == 0 || newPassword == null) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'New Password tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+          if (password !== newPassword) {
+
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Confirmasi password tidak cocok'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
 
         try {
             let qry = `CALL resetPass('${username}','${password}','${newPassword}')`;
