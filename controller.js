@@ -106,7 +106,7 @@ let pasien = {
     getAllDataPasien : async(req, res) => {
         try {
             //JOIN detail
-            let qry =  `SELECT pasien.tglPenerimaan, pasien.waktuPenerimaan, pasien.tglPemeriksaan, pasien.pengirim, pasien.namaPasien,
+            let qry =  `SELECT pasien.IDPasien, pasien.tglPenerimaan, pasien.waktuPenerimaan, pasien.tglPemeriksaan, pasien.pengirim, pasien.namaPasien,
             pasien.NIK, pasien.tglLahir, pasien.jenisSpecimen, pasien.pemeriksaan,
            detailDokumen.geneTarget, detailDokumen.nilaiCT,
            kesimpulanPemeriksaan.kesimpulan
