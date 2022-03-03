@@ -19,7 +19,14 @@ let pasien = {
 
         try {
             //JOIN detail
-            let qry =  `SELECT * FROM pasien WHERE NIK = ${nik};`;
+            let qry =  `SELECT pasien.tglPenerimaan, pasien.waktuPenerimaan, pasien.tglPemeriksaan, pasien.pengirim, pasien.namaPasien,
+            pasien.NIK, pasien.tglLahir, pasien.jenisSpecimen, pasien.pemeriksaan,
+           detailDokumen.geneTarget, detailDokumen.nilaiCT,
+           kesimpulanPemeriksaan.kesimpulan
+           FROM pasien
+           INNER JOIN detailDokumen ON pasien.IDPasien = detailDokumen.IDPasien
+           INNER JOIN kesimpulanPemeriksaan ON pasien.IDPasien = kesimpulanPemeriksaan.idPasien
+            WHERE pasien.NIK = '${nik}' AND pasien.tglLahir='${tglLahir}';`;
             console.log(qry);
             let hasil = await connection.execQry(qry)
             let response = {
@@ -65,16 +72,19 @@ let pasien = {
         
         try {
             
-            let qry =  `SELECT pasien.tglPenerimaan, pasien.waktuPenerimaan, pasien.tglPemeriksaan, pasien.pengirim, pasien.namaPasien,
-            pasien.NIK, pasien.tglLahir, pasien.jenisSpecimen, pasien.pemeriksaan,
-           detailDokumen.geneTarget, detailDokumen.nilaiCT,
-           kesimpulanPemeriksaan.kesimpulan
-           FROM pasien
-           INNER JOIN detailDokumen ON pasien.IDPasien = detailDokumen.IDPasien
-           INNER JOIN kesimpulanPemeriksaan ON pasien.IDPasien = kesimpulanPemeriksaan.idPasien
+            let qry =  `SELECT tglPenerimaan, waktuPenerimaan, tglPemeriksaan, pengirim, namaPasien,
+             NIK, tglLahir, jenisSpecimen, pemeriksaan,
+               (SELECT JSON_ARRAYAGG(JSON_OBJECT('geneTarget', geneTarget, 'nilaiCT',nilaiCT)) FROM detailDokumen INNER JOIN pasien 
+                     ON pasien.IDPasien = detailDokumen.IDPasien ) 
+               as detailDokumen,
+               (SELECT JSON_ARRAYAGG(JSON_OBJECT('kesimpulan', kesimpulan)) from kesimpulanPemeriksaan INNER JOIN pasien 
+                     ON pasien.IDPasien =  kesimpulanPemeriksaan.IDPasien) 
+               as kesimpulanPemeriksaan 
+               FROM pasien
             WHERE pasien.NIK = '${nik}' AND pasien.tglLahir='${tglLahir}';`;
-            console.log(qry);
+         
             let hasil = await connection.execQry(qry)
+            console.log(hasil);
             let response = {
                 code: 200,
                 message: 'success',
@@ -95,7 +105,13 @@ let pasien = {
     getAllDataPasien : async(req, res) => {
         try {
             //JOIN detail
-            let qry =  `SELECT * FROM pasien`
+            let qry =  `SELECT pasien.tglPenerimaan, pasien.waktuPenerimaan, pasien.tglPemeriksaan, pasien.pengirim, pasien.namaPasien,
+            pasien.NIK, pasien.tglLahir, pasien.jenisSpecimen, pasien.pemeriksaan,
+           detailDokumen.geneTarget, detailDokumen.nilaiCT,
+           kesimpulanPemeriksaan.kesimpulan
+           FROM pasien
+           INNER JOIN detailDokumen ON pasien.IDPasien = detailDokumen.IDPasien
+           INNER JOIN kesimpulanPemeriksaan ON pasien.IDPasien = kesimpulanPemeriksaan.idPasien`
             let hasil = await connection.execQry(qry)
             let response = {
                 code: 200,
@@ -419,40 +435,40 @@ let pasien = {
     
 }
 let QR = {
-    generateLink : async(req, res) => {
-        let NIK = req.body.NIK
-        if (NIK == 0 || NIK == null) {
+    // generateLink : async(req, res) => {
+    //     let NIK = req.body.NIK
+    //     if (NIK == 0 || NIK == null) {
 
-            let response = {
-                code: 400,
-                message: 'Error',
-                error:'NIK tidak terisi'
-              };      
-            res.status(400).send(response);
-            return response;
-          }
-        try {
-            let qry = `SELECT * FROM pasien WHERE NIK='${NIK}'`;
-            let hasil = await connection.execQry(qry)
-            let response = {
-                code: 200,
-                message: `data ${NIK} berhasil di generate`,
-                link: `8.215.37.21:5021/globaldoctor/pasien/getDataPasien?nik=${NIK}`
-            };
-            res.status(200).send(response)
-            return hasil
+    //         let response = {
+    //             code: 400,
+    //             message: 'Error',
+    //             error:'NIK tidak terisi'
+    //           };      
+    //         res.status(400).send(response);
+    //         return response;
+    //       }
+    //     try {
+    //         let qry = `SELECT * FROM pasien WHERE NIK='${NIK}'`;
+    //         let hasil = await connection.execQry(qry)
+    //         let response = {
+    //             code: 200,
+    //             message: `data ${NIK} berhasil di generate`,
+    //             link: `8.215.37.21:5021/globaldoctor/pasien/getDataPasien?nik=${NIK}`
+    //         };
+    //         res.status(200).send(response)
+    //         return hasil
 
-        } catch (e) {
-            let err = {
-                code: 400,
-                message: `data ${NIK} tidak ditemukan`,
-                error:e
-            };
-            res.status(400).send(err)
-            return err
+    //     } catch (e) {
+    //         let err = {
+    //             code: 400,
+    //             message: `data ${NIK} tidak ditemukan`,
+    //             error:e
+    //         };
+    //         res.status(400).send(err)
+    //         return err
 
-        }
-    },
+    //     }
+    // },
     callData : async(req, res) => {
         let NIK = req.params.NIK
         if (NIK == 0 || NIK == null) {
