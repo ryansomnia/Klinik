@@ -17,16 +17,17 @@ let pasien = {
             return response;
           }
 
-        try {
-            //JOIN detail
-            let qry =  `SELECT pasien.tglPenerimaan, pasien.waktuPenerimaan, pasien.tglPemeriksaan, pasien.pengirim, pasien.namaPasien,
-            pasien.NIK, pasien.tglLahir, pasien.jenisSpecimen, pasien.pemeriksaan,
-           detailDokumen.geneTarget, detailDokumen.nilaiCT,
-           kesimpulanPemeriksaan.kesimpulan
-           FROM pasien
-           INNER JOIN detailDokumen ON pasien.IDPasien = detailDokumen.IDPasien
-           INNER JOIN kesimpulanPemeriksaan ON pasien.IDPasien = kesimpulanPemeriksaan.idPasien
-            WHERE pasien.NIK = '${nik}' AND pasien.tglLahir='${tglLahir}';`;
+        try {let qry =
+          `SELECT tglPenerimaan, waktuPenerimaan, tglPemeriksaan, pengirim, namaPasien,
+          NIK, tglLahir, jenisSpecimen, pemeriksaan,
+            (SELECT JSON_ARRAYAGG(JSON_OBJECT('geneTarget', geneTarget, 'nilaiCT',nilaiCT)) FROM detailDokumen INNER JOIN pasien 
+                  ON pasien.IDPasien = detailDokumen.IDPasien ) 
+            as detailDokumen,
+            (SELECT JSON_ARRAYAGG(JSON_OBJECT('kesimpulan', kesimpulan)) from kesimpulanPemeriksaan INNER JOIN pasien 
+                  ON pasien.IDPasien =  kesimpulanPemeriksaan.IDPasien) 
+            as kesimpulanPemeriksaan 
+            FROM pasien
+         WHERE pasien.NIK = '${nik}' AND pasien.tglLahir='${tglLahir}';`
             console.log(qry);
             let hasil = await connection.execQry(qry)
             let response = {
