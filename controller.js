@@ -89,7 +89,7 @@ let pasien = {
             let response = {
                 code: 200,
                 message: 'success',
-                data: nik
+                data: hasil
             };
             res.status(200).send(response)
             return hasil
@@ -98,7 +98,7 @@ let pasien = {
             let response = {
                 code: 400,
                 message: 'error',
-                data: error
+                data: 'tanggal lahir dan nik tidak cocok'
             };
             res.status(400).send(response)
         }
