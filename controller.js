@@ -89,7 +89,7 @@ let pasien = {
             let response = {
                 code: 200,
                 message: 'success',
-                data: hasil
+                data: nik
             };
             res.status(200).send(response)
             return hasil
