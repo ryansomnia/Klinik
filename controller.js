@@ -27,7 +27,7 @@ let pasien = {
                   ON pasien.IDPasien =  kesimpulanPemeriksaan.IDPasien) 
             as kesimpulanPemeriksaan 
             FROM pasien
-         WHERE pasien.NIK = '${nik}' AND pasien.tglLahir='${tglLahir}';`
+         WHERE pasien.NIK = '${nik}';`
             console.log(qry);
             let hasil = await connection.execQry(qry)
             let response = {
