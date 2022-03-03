@@ -5,7 +5,7 @@ const moment = require('moment');
 
 let pasien = {
     getDataPasien : async(req, res) => {
-        let nik = req.query.nik
+        let nik = req.body.nik
         if (nik == 0 || nik == null) {
 
             let response = {
