@@ -106,13 +106,7 @@ let pasien = {
     getAllDataPasien : async(req, res) => {
         try {
             //JOIN detail
-            let qry =  `SELECT pasien.IDPasien, pasien.tglPenerimaan, pasien.waktuPenerimaan, pasien.tglPemeriksaan, pasien.pengirim, pasien.namaPasien,
-            pasien.NIK, pasien.tglLahir, pasien.jenisSpecimen, pasien.pemeriksaan,
-           detailDokumen.geneTarget, detailDokumen.nilaiCT,
-           kesimpulanPemeriksaan.kesimpulan
-           FROM pasien
-           INNER JOIN detailDokumen ON pasien.IDPasien = detailDokumen.IDPasien
-           INNER JOIN kesimpulanPemeriksaan ON pasien.IDPasien = kesimpulanPemeriksaan.idPasien`
+            let qry =  `SELECT * FROM pasien` 
             let hasil = await connection.execQry(qry)
             let response = {
                 code: 200,
