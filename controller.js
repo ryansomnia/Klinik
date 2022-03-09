@@ -116,275 +116,413 @@ let pasien = {
             res.status(400).send(response)
         }
     },
-    // addDataPasien : async(req, res) => {
-    //     let IDPasien = req.body.IDPasien
-    //     if (IDPasien == 0 || IDPasien == null) {
+    addDataPasien : async(req, res) => {
+        let IDPasien = req.body.IDPasien
+        if (IDPasien == 0 || IDPasien == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'IDPasien tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let tglPenerimaan = req.body.tglPenerimaan
-    //     if (tglPenerimaan == 0 || tglPenerimaan == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'IDPasien tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let waktuPengambilanSampel = req.body.waktuPengambilanSampel
+        if (waktuPengambilanSampel == 0 || waktuPengambilanSampel == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'tgl Penerimaan tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let waktuPenerimaan = req.body.waktuPenerimaan
-    //     if (waktuPenerimaan == 0 || waktuPenerimaan == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Waktu Pengambilan Sampel tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let namaPasien = req.body.namaPasien
+        if (namaPasien == 0 || namaPasien == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'waktu Penerimaan tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let tglPemeriksaan = req.body.tglPemeriksaan
-    //     if (tglPemeriksaan == 0 || tglPemeriksaan == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Nama pasien tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+          let tglLahir = req.body.tglLahir
+          if (tglLahir == 0 || tglLahir == null) {
+  
+              let response = {
+                  code: 400,
+                  message: 'Error',
+                  error:'tgl lahir tidak terisi'
+                };      
+              res.status(400).send(response);
+              return response;
+            }
+        let jenisKelamin = req.body.jenisKelamin
+        if (jenisKelamin == 0 || jenisKelamin == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'tgl Pemeriksaan tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let pengirim = req.body.pengirim
-    //     if (pengirim == 0 || pengirim == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Jenis kelamin tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+       
+        let NIK = req.body.NIK
+        if (NIK == 0 || NIK == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'pengirim tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let namaPasien = req.body.namaPasien
-    //     if (namaPasien == 0 || namaPasien == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'NIK tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let tglPemeriksaan = req.body.tglPemeriksaan
+        if (tglPemeriksaan == 0 || tglPemeriksaan == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'nama pasien tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let NIK = req.body.NIK
-    //     if (NIK == 0 || NIK == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Tanggal Pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let waktuPemeriksaan = req.body.waktuPemeriksaan
+        if (waktuPemeriksaan == 0 || waktuPemeriksaan == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'NIK tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let tglLahir = req.body.tglLahir
-    //     if (tglLahir == 0 || tglLahir == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'waktub Pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+       
+        let kotaPemeriksaan = req.body.kotaPemeriksaan
+        if (kotaPemeriksaan == 0 || kotaPemeriksaan == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'tgl lahir tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let jenisSpecimen = req.body.jenisSpecimen
-    //     if (jenisSpecimen == 0 || jenisSpecimen == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Kota Pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let tipePemeriksaan = req.body.tipePemeriksaan
+        if (tipePemeriksaan == 0 || tipePemeriksaan == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'jenis specimen tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let pemeriksaan = req.body.pemeriksaan
-    //     if (pemeriksaan == 0 || pemeriksaan == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Tipe pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+          let hasil = req.body.hasil
+          if (hasil == 0 || hasil == null) {
+  
+              let response = {
+                  code: 400,
+                  message: 'Error',
+                  error:'hasil tidak terisi'
+                };      
+              res.status(400).send(response);
+              return response;
+            }
+            let nilaiNormal = req.body.nilaiNormal
+            if (nilaiNormal == 0 || nilaiNormal == null) {
+    
+                let response = {
+                    code: 400,
+                    message: 'Error',
+                    error:'Nilai normal tidak terisi'
+                  };      
+                res.status(400).send(response);
+                return response;
+              }
+              let kesimpulanEng = req.body.kesimpulanEng
+              if (kesimpulanEng == 0 || kesimpulanEng == null) {
+      
+                  let response = {
+                      code: 400,
+                      message: 'Error',
+                      error:'kesimpulan English tidak terisi'
+                    };      
+                  res.status(400).send(response);
+                  return response;
+                }
+                let kesimpulanIna = req.body.kesimpulanIna
+                if (kesimpulanIna == 0 || kesimpulanIna == null) {
+        
+                    let response = {
+                        code: 400,
+                        message: 'Error',
+                        error:'kesimpulan Indonesia tidak terisi'
+                      };      
+                    res.status(400).send(response);
+                    return response;
+                  }
+                  let pemeriksa = req.body.pemeriksa
+                  if (pemeriksa == 0 || pemeriksa == null) {
+          
+                      let response = {
+                          code: 400,
+                          message: 'Error',
+                          error:'pemeriksaan tidak terisi'
+                        };      
+                      res.status(400).send(response);
+                      return response;
+                    }
+                    let SIP = req.body.SIP
+                    if (SIP == 0 || SIP == null) {
+            
+                        let response = {
+                            code: 400,
+                            message: 'Error',
+                            error:'SIP tidak terisi'
+                          };      
+                        res.status(400).send(response);
+                        return response;
+                      }
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'pemeriksaan tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
+        try {
+            let qry = `INSERT INTO pasien (IDPasien, waktuPengambilanSampel, namaPasien, tglLahir, jenisKelamin, NIK, tglPemeriksaan, waktuPemeriksaan, kotaPemeriksaan, tipePemeriksaan, hasil, nilaiNormal, kesimpulanEng, kesimpulanIna, pemeriksa, SIP) 
+            VALUES ('${IDPasien}','${waktuPengambilanSampel}','${namaPasien}','${tglLahir}','${jenisKelamin}','${NIK}','${tglPemeriksaan}','${waktuPemeriksaan}','${kotaPemeriksaan}','${tipePemeriksaan}','${hasil}', '${nilaiNormal}', '${kesimpulanEng}', '${kesimpulanIna}', '${pemeriksa}', '${SIP}')`;
+            
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: `data ${namaPasien} berhasil di input.`
+            };
+            res.status(200).send(response)
+            return hasil
+        } catch (error) {
+            console.log(error);
+            let response = {
+                code: 400,
+                message: 'error',
+                data: error
+            };
+            res.status(400).send(response)
+        }
+    },
+    updateDataPasien : async(req, res) => {
+      let IDPasien = req.body.IDPasien
+        if (IDPasien == 0 || IDPasien == null) {
 
-    //     try {
-    //         let qry = `INSERT INTO pasien (IDPasien, tglPenerimaan, waktuPenerimaan,tglPemeriksaan, pengirim, namaPasien,NIK, tglLahir, jenisSpecimen, pemeriksaan) 
-    //         VALUES ('${IDPasien}','${tglPenerimaan}','${waktuPenerimaan}','${tglPemeriksaan}','${pengirim}','${namaPasien}','${NIK}','${tglLahir}','${jenisSpecimen}','${pemeriksaan}')`;
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'IDPasien tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let waktuPengambilanSampel = req.body.waktuPengambilanSampel
+        if (waktuPengambilanSampel == 0 || waktuPengambilanSampel == null) {
 
-    //         let hasil = await connection.execQry(qry)
-    //         let response = {
-    //             code: 200,
-    //             message: `data ${namaPasien} berhasil di input.`
-    //         };
-    //         res.status(200).send(response)
-    //         return hasil
-    //     } catch (error) {
-    //         console.log(error);
-    //         let response = {
-    //             code: 400,
-    //             message: 'error',
-    //             data: error
-    //         };
-    //         res.status(400).send(response)
-    //     }
-    // },
-    // updateDataPasien : async(req, res) => {
-    //     let IDPasien = req.body.IDPasien
-    //     if (IDPasien == 0 || IDPasien == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Waktu Pengambilan Sampel tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let namaPasien = req.body.namaPasien
+        if (namaPasien == 0 || namaPasien == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'IDPasien tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let tglPenerimaan = req.body.tglPenerimaan
-    //     if (tglPenerimaan == 0 || tglPenerimaan == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Nama pasien tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+          let tglLahir = req.body.tglLahir
+          if (tglLahir == 0 || tglLahir == null) {
+  
+              let response = {
+                  code: 400,
+                  message: 'Error',
+                  error:'tgl lahir tidak terisi'
+                };      
+              res.status(400).send(response);
+              return response;
+            }
+        let jenisKelamin = req.body.jenisKelamin
+        if (jenisKelamin == 0 || jenisKelamin == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'tgl Penerimaan tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let waktuPenerimaan = req.body.waktuPenerimaan
-    //     if (waktuPenerimaan == 0 || waktuPenerimaan == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Jenis kelamin tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+       
+        let NIK = req.body.NIK
+        if (NIK == 0 || NIK == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'Waktu Penerimaan tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let tglPemeriksaan = req.body.tglPemeriksaan
-    //     if (tglPemeriksaan == 0 || tglPemeriksaan == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'NIK tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let tglPemeriksaan = req.body.tglPemeriksaan
+        if (tglPemeriksaan == 0 || tglPemeriksaan == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'tgl Pemeriksaan tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let pengirim = req.body.pengirim
-    //     if (pengirim == 0 || pengirim == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Tanggal Pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let waktuPemeriksaan = req.body.waktuPemeriksaan
+        if (waktuPemeriksaan == 0 || waktuPemeriksaan == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'pengirim tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let namaPasien = req.body.namaPasien
-    //     if (namaPasien == 0 || namaPasien == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'waktub Pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+       
+        let kotaPemeriksaan = req.body.kotaPemeriksaan
+        if (kotaPemeriksaan == 0 || kotaPemeriksaan == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'Nama Pasien tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let NIK = req.body.NIK
-    //     if (NIK == 0 || NIK == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Kota Pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+        let tipePemeriksaan = req.body.tipePemeriksaan
+        if (tipePemeriksaan == 0 || tipePemeriksaan == null) {
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'NIK tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let tglLahir = req.body.tglLahir
-    //     if (tglLahir == 0 || tglLahir == null) {
+            let response = {
+                code: 400,
+                message: 'Error',
+                error:'Tipe pemeriksaan tidak terisi'
+              };      
+            res.status(400).send(response);
+            return response;
+          }
+          let hasil = req.body.hasil
+          if (hasil == 0 || hasil == null) {
+  
+              let response = {
+                  code: 400,
+                  message: 'Error',
+                  error:'hasil tidak terisi'
+                };      
+              res.status(400).send(response);
+              return response;
+            }
+            let nilaiNormal = req.body.nilaiNormal
+            if (nilaiNormal == 0 || nilaiNormal == null) {
+    
+                let response = {
+                    code: 400,
+                    message: 'Error',
+                    error:'Nilai normal tidak terisi'
+                  };      
+                res.status(400).send(response);
+                return response;
+              }
+              let kesimpulanEng = req.body.kesimpulanEng
+              if (kesimpulanEng == 0 || kesimpulanEng == null) {
+      
+                  let response = {
+                      code: 400,
+                      message: 'Error',
+                      error:'kesimpulan English tidak terisi'
+                    };      
+                  res.status(400).send(response);
+                  return response;
+                }
+                let kesimpulanIna = req.body.kesimpulanIna
+                if (kesimpulanIna == 0 || kesimpulanIna == null) {
+        
+                    let response = {
+                        code: 400,
+                        message: 'Error',
+                        error:'kesimpulan Indonesia tidak terisi'
+                      };      
+                    res.status(400).send(response);
+                    return response;
+                  }
+                  let pemeriksa = req.body.pemeriksa
+                  if (pemeriksa == 0 || pemeriksa == null) {
+          
+                      let response = {
+                          code: 400,
+                          message: 'Error',
+                          error:'pemeriksaan tidak terisi'
+                        };      
+                      res.status(400).send(response);
+                      return response;
+                    }
+                    let SIP = req.body.SIP
+                    if (SIP == 0 || SIP == null) {
+            
+                        let response = {
+                            code: 400,
+                            message: 'Error',
+                            error:'SIP tidak terisi'
+                          };      
+                        res.status(400).send(response);
+                        return response;
+                      }
 
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'tgl Lahir tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let jenisSpecimen = req.body.jenisSpecimen
-    //     if (jenisSpecimen == 0 || jenisSpecimen == null) {
-
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'jenis specimen tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-    //     let pemeriksaan = req.body.pemeriksaan
-    //     if (pemeriksaan == 0 || pemeriksaan == null) {
-
-    //         let response = {
-    //             code: 400,
-    //             message: 'Error',
-    //             error:'pemeriksaan tidak terisi'
-    //           };      
-    //         res.status(400).send(response);
-    //         return response;
-    //       }
-
-    //     try {
-    //         let qry = `UPDATE pasien
-    //                     SET tglPenerimaan = '${tglPenerimaan}', waktuPenerimaan = '${waktuPenerimaan}',
-    //                     tglPemeriksaan = '${tglPemeriksaan}', pengirim = '${pengirim}',
-    //                     namaPasien = '${namaPasien}' ,NIK = '${NIK}', tglLahir = '${tglLahir}',
-    //                      jenisSpecimen = '${jenisSpecimen}', pemeriksaan = '${pemeriksaan}'
-    //                     WHERE IDPasien='${IDPasien}'`;
-    //         let hasil = await connection.execQry(qry)
-    //         let response = {
-    //             code: 200,
-    //             message: `data ID : ${IDPasien} berhasil di update.`
-    //         };
-    //         res.status(200).send(response)
-    //         return hasil
-    //     } catch (error) {
-    //         console.log(error);
-    //         let response = {
-    //             code: 400,
-    //             message: 'error',
-    //             data: error
-    //         };
-    //         res.status(400).send(response)
-    //     }
-    // },
+        try {
+            let qry = `UPDATE pasien
+                        SET waktuPengambilanSampel = '${waktuPengambilanSampel}', namaPasien = '${namaPasien}',
+                         tglLahir = '${tglLahir}', jenisKelamin = '${jenisKelamin}', NIK = '${NIK}', tglPemeriksaan = '${tglPemeriksaan}', 
+                         waktuPemeriksaan = '${waktuPemeriksaan}', kotaPemeriksaan = '${kotaPemeriksaan}', 
+                         tipePemeriksaan = '${tipePemeriksaan}', hasil = '${hasil}', nilaiNormal = '${nilaiNormal}', 
+                         kesimpulanEng = '${kesimpulanEng}', kesimpulanIna = '${kesimpulanIna}', pemeriksa = '${pemeriksa}',
+                          SIP = '${SIP}'
+                        WHERE IDPasien='${IDPasien}'`;
+            let hasil = await connection.execQry(qry)
+            let response = {
+                code: 200,
+                message: `data ID : ${IDPasien} berhasil di update.`
+            };
+            res.status(200).send(response)
+            return hasil
+        } catch (error) {
+            console.log(error);
+            let response = {
+                code: 400,
+                message: 'error',
+                data: error
+            };
+            res.status(400).send(response)
+        }
+    },
     deleteDataPasien : async(req, res) => {
         let IDPasien = req.body.IDPasien
         if (IDPasien == 0 || IDPasien == null) {
