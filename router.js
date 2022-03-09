@@ -5,7 +5,7 @@ const control = require('./controller')
 
 // Pasien
 router.get('/globaldoctor/pasien/getAllDataPasien', control.pasien.getAllDataPasien)
-router.get('/globaldoctor/pasien/validatePasien/:nik/:tglLahir', control.pasien.validatePasien)
+router.post('/globaldoctor/pasien/validatePasien/', control.pasien.validatePasien)
 router.post('/globaldoctor/pasien/getDataPasien', control.pasien.getDataPasien)
 router.post('/globaldoctor/pasien/addDataPasien', control.pasien.addDataPasien)
 router.post('/globaldoctor/pasien/updateDataPasien', control.pasien.updateDataPasien)
