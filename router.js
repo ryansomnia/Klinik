@@ -5,7 +5,7 @@ const control = require('./controller')
 
 // Pasien
 router.get('/globaldoctor/pasien/getAllDataPasien', control.pasien.getAllDataPasien)
-router.post('/globaldoctor/pasien/validatePasien', control.pasien.validatePasien)
+router.get('/globaldoctor/pasien/validatePasien/:nik/:tglLahir', control.pasien.validatePasien)
 router.post('/globaldoctor/pasien/getDataPasien', control.pasien.getDataPasien)
 router.post('/globaldoctor/pasien/addDataPasien', control.pasien.addDataPasien)
 router.post('/globaldoctor/pasien/updateDataPasien', control.pasien.updateDataPasien)
@@ -13,8 +13,8 @@ router.post('/globaldoctor/pasien/deleteDataPasien', control.pasien.deleteDataPa
 
 
 // QRCode
-// router.post('/globaldoctor/qr/generateQRlink',control.QR.generateLink)
-router.get('/globaldoctor/qr/callData',control.QR.callData)
+router.post('/globaldoctor/qr/generateQRlink',control.QR.generateLink)
+router.get('/globaldoctor/qr/callData',control.QR.callData) 
 // User
 router.post('/globaldoctor/user/updateDataUser', control.user.updateDataUser)
 router.post('/globaldoctor/user/login', control.user.login)
