@@ -75,13 +75,26 @@ let pasien = {
 
       let hasil = await connection.execQry(qry);
       console.log(hasil);
-      let response = {
-        code: 200,
-        message: "success",
-        data: hasil,
-      };
-      res.status(200).send(response);
-      return hasil;
+      console.log(hasil.length);
+      if(hasil.length > 0){
+        let response = {
+          code: 200,
+          message: "success",
+          data: hasil,
+        };
+        res.status(200).send(response);
+        return hasil;
+      } else {
+        let response = {
+          code: 400,
+          message: "error",
+          data: "data tidak ditemukan",
+        };
+        res.status(400).send(response);
+        return hasil;
+      }
+
+     
     } catch (error) {
       console.log(error);
       let response = {
