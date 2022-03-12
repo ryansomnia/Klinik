@@ -201,23 +201,12 @@ let pasien = {
             let response = {
                 code: 400,
                 message: 'Error',
-                error:'waktub Pemeriksaan tidak terisi'
+                error:'waktu Pemeriksaan tidak terisi'
               };      
             res.status(400).send(response);
             return response;
           }
        
-        let kotaPemeriksaan = req.body.kotaPemeriksaan
-        if (kotaPemeriksaan == 0 || kotaPemeriksaan == null) {
-
-            let response = {
-                code: 400,
-                message: 'Error',
-                error:'Kota Pemeriksaan tidak terisi'
-              };      
-            res.status(400).send(response);
-            return response;
-          }
         let tipePemeriksaan = req.body.tipePemeriksaan
         if (tipePemeriksaan == 0 || tipePemeriksaan == null) {
 
@@ -273,32 +262,10 @@ let pasien = {
                     res.status(400).send(response);
                     return response;
                   }
-                  let pemeriksa = req.body.pemeriksa
-                  if (pemeriksa == 0 || pemeriksa == null) {
-          
-                      let response = {
-                          code: 400,
-                          message: 'Error',
-                          error:'pemeriksaan tidak terisi'
-                        };      
-                      res.status(400).send(response);
-                      return response;
-                    }
-                    let SIP = req.body.SIP
-                    if (SIP == 0 || SIP == null) {
-            
-                        let response = {
-                            code: 400,
-                            message: 'Error',
-                            error:'SIP tidak terisi'
-                          };      
-                        res.status(400).send(response);
-                        return response;
-                      }
 
         try {
-            let qry = `INSERT INTO pasien (IDPasien, waktuPengambilanSampel, namaPasien, tglLahir, jenisKelamin, NIK, tglPemeriksaan, waktuPemeriksaan, kotaPemeriksaan, tipePemeriksaan, hasil, nilaiNormal, kesimpulanEng, kesimpulanIna, pemeriksa, SIP) 
-            VALUES ('${IDPasien}','${waktuPengambilanSampel}','${namaPasien}','${tglLahir}','${jenisKelamin}','${NIK}','${tglPemeriksaan}','${waktuPemeriksaan}','${kotaPemeriksaan}','${tipePemeriksaan}','${hasil}', '${nilaiNormal}', '${kesimpulanEng}', '${kesimpulanIna}', '${pemeriksa}', '${SIP}')`;
+            let qry = `INSERT INTO pasien (IDPasien, waktuPengambilanSampel, namaPasien, tglLahir, jenisKelamin, NIK, tglPemeriksaan, waktuPemeriksaan, tipePemeriksaan, hasil, nilaiNormal, kesimpulanEng, kesimpulanIna) 
+            VALUES ('${IDPasien}','${waktuPengambilanSampel}','${namaPasien}','${tglLahir}','${jenisKelamin}','${NIK}','${tglPemeriksaan}','${waktuPemeriksaan}','${tipePemeriksaan}','${hasil}', '${nilaiNormal}', '${kesimpulanEng}', '${kesimpulanIna}')`;
             
             let hasil = await connection.execQry(qry)
             let response = {
