@@ -218,8 +218,8 @@ let pasien = {
             res.status(400).send(response);
             return response;
           }
-          let hasil = req.body.hasil
-          if (hasil == 0 || hasil == null) {
+          let hasilPemeriksaan = req.body.hasilPemeriksaan
+          if (hasilPemeriksaan == 0 || hasilPemeriksaan == null) {
   
               let response = {
                   code: 400,
@@ -264,10 +264,11 @@ let pasien = {
                   }
 
         try {
-            let qry = `INSERT INTO pasien (IDPasien, waktuPengambilanSampel, namaPasien, tglLahir, jenisKelamin, NIK, tglPemeriksaan, waktuPemeriksaan, tipePemeriksaan, hasil, nilaiNormal, kesimpulanEng, kesimpulanIna) 
-            VALUES ('${IDPasien}','${waktuPengambilanSampel}','${namaPasien}','${tglLahir}','${jenisKelamin}','${NIK}','${tglPemeriksaan}','${waktuPemeriksaan}','${tipePemeriksaan}','${hasil}', '${nilaiNormal}', '${kesimpulanEng}', '${kesimpulanIna}')`;
+            let qry = `INSERT INTO pasien (IDPasien, waktuPengambilanSampel, namaPasien, tglLahir, jenisKelamin, NIK, tglPemeriksaan, waktuPemeriksaan, tipePemeriksaan, hasilPemeriksaan, nilaiNormal, kesimpulanEng, kesimpulanIna) 
+            VALUES ('${IDPasien}','${waktuPengambilanSampel}','${namaPasien}','${tglLahir}','${jenisKelamin}','${NIK}','${tglPemeriksaan}','${waktuPemeriksaan}','${tipePemeriksaan}','${hasilPemeriksaan}', '${nilaiNormal}', '${kesimpulanEng}', '${kesimpulanIna}')`;
             
             let hasil = await connection.execQry(qry)
+            console.log(hasil);
             let response = {
                 code: 200,
                 message: `data ${namaPasien} berhasil di input.`
