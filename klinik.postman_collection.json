@@ -95,7 +95,32 @@
 									"type": "text"
 								},
 								{
-									"key": "tglPenerimaan",
+									"key": "waktuPengambilanSampel",
+									"value": "06:00",
+									"type": "text"
+								},
+								{
+									"key": "namaPasien",
+									"value": "lukas",
+									"type": "text"
+								},
+								{
+									"key": "tglLahir",
+									"value": "2022-01-01",
+									"type": "text"
+								},
+								{
+									"key": "jenisKelamin",
+									"value": "Laki-laki",
+									"type": "text"
+								},
+								{
+									"key": "NIK",
+									"value": "300000000001",
+									"type": "text"
+								},
+								{
+									"key": "tglPemeriksaan",
 									"value": "2022-01-01",
 									"type": "text"
 								},
@@ -105,33 +130,13 @@
 									"type": "text"
 								},
 								{
-									"key": "tglPemeriksaan",
-									"value": "2022-01-01",
-									"type": "text"
-								},
-								{
 									"key": "pengirim",
 									"value": "heriyanto",
 									"type": "text"
 								},
 								{
-									"key": "namaPasien",
-									"value": "lukas",
-									"type": "text"
-								},
-								{
-									"key": "NIK",
-									"value": "300000000001",
-									"type": "text"
-								},
-								{
 									"key": "tglLahir",
 									"value": "1995-01-01",
-									"type": "text"
-								},
-								{
-									"key": "jenisSpecimen",
-									"value": "test",
 									"type": "text"
 								},
 								{
@@ -256,6 +261,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "ValidatePasien",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nik",
+									"value": "123123123123123",
+									"type": "text"
+								},
+								{
+									"key": "tglLahir",
+									"value": "2022-03-15",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "8.215.37.21:5021/globaldoctor/pasien/validatePasien",
+							"host": [
+								"8",
+								"215",
+								"37",
+								"21"
+							],
+							"port": "5021",
+							"path": [
+								"globaldoctor",
+								"pasien",
+								"validatePasien"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -338,6 +381,39 @@
 								"globaldoctor",
 								"user",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QR",
+			"item": [
+				{
+					"name": "generateQRlink",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:5021/globaldoctor/qr/generateQRlink",
+							"host": [
+								"localhost"
+							],
+							"port": "5021",
+							"path": [
+								"globaldoctor",
+								"qr",
+								"generateQRlink"
 							]
 						}
 					},
