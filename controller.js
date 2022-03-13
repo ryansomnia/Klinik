@@ -422,12 +422,23 @@ let pasien = {
       let qry = `DELETE FROM pasien WHERE IDPasien='${IDPasien}'`;
 
       let hasil = await connection.execQry(qry);
-      let response = {
-        code: 200,
-        message: `data ID : ${IDPasien} berhasil di hapus.`,
-      };
-      res.status(200).send(response);
-      return hasil;
+      console.log('hasil',hasil.affectedRows);
+      if ( hasil.affectedRows == 1){
+        let response = {
+          code: 200,
+          message: `data ID : ${IDPasien} berhasil di hapus.`,
+        };
+        res.status(200).send(response);
+        return hasil;
+      }else {
+        let response = {
+          code: 201,
+          message: `data ID : ${IDPasien} tidak berhasil di hapus.`,
+        };
+        res.status(201).send(response);
+        return hasil;
+      }
+     
     } catch (error) {
       console.log(error);
       let response = {
