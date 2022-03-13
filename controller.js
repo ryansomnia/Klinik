@@ -87,7 +87,7 @@ let pasien = {
       } else {
         let response = {
           code: 201,
-          message: "error",
+          message: "Tanggal lahir salah",
           data: [],
         };
         res.status(201).send(response);
