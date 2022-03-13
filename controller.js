@@ -586,11 +586,11 @@ let user = {
       console.log('hasil',hasil[0][0].code);
       if(hasil[0][0].code == 401){
         let response = {
-          code: 401,
+          code: 201,
           message: `gagal login`,
           data: [],
         };
-        res.status(401).send(response);
+        res.status(201).send(response);
         return hasil;
       }else{
         let response = {
