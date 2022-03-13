@@ -86,9 +86,9 @@ let pasien = {
         return hasil;
       } else {
         let response = {
-          code: 400,
+          code: 200,
           message: "error",
-          data: "data tidak ditemukan",
+          data: "data kosong",
         };
         res.status(400).send(response);
         return hasil;
