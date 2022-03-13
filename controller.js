@@ -90,7 +90,7 @@ let pasien = {
           message: "error",
           data: "data kosong",
         };
-        res.status(400).send(response);
+        res.status(200).send(response);
         return hasil;
       }
 
