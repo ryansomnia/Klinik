@@ -583,13 +583,25 @@ let user = {
     try {
       let qry = `CALL login('${username}','${password}') `;
       let hasil = await connection.execQry(qry);
-      let response = {
-        code: 200,
-        message: `succes login`,
-        data: username,
-      };
-      res.status(200).send(response);
-      return hasil;
+      console.log('hasil',hasil[0][0].code);
+      if(hasil[0][0].code == 401){
+        let response = {
+          code: 401,
+          message: `gagal login`,
+          data: [],
+        };
+        res.status(401).send(response);
+        return hasil;
+      }else{
+        let response = {
+          code: 200,
+          message: `success login`,
+          data: username,
+        };
+        res.status(200).send(response);
+        return hasil;
+      }
+      
     } catch (error) {
       console.log(error);
       let response = {
