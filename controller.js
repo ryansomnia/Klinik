@@ -17,16 +17,7 @@ let pasien = {
     }
 
     try {
-      let qry = `SELECT tglPenerimaan, waktuPenerimaan, tglPemeriksaan, pengirim, namaPasien,
-          NIK, tglLahir, jenisSpecimen, pemeriksaan,
-            (SELECT JSON_ARRAYAGG(JSON_OBJECT('geneTarget', geneTarget, 'nilaiCT',nilaiCT)) FROM detailDokumen INNER JOIN pasien 
-                  ON pasien.IDPasien = detailDokumen.IDPasien ) 
-            as detailDokumen,
-            (SELECT JSON_ARRAYAGG(JSON_OBJECT('kesimpulan', kesimpulan)) from kesimpulanPemeriksaan INNER JOIN pasien 
-                  ON pasien.IDPasien =  kesimpulanPemeriksaan.IDPasien) 
-            as kesimpulanPemeriksaan 
-            FROM pasien
-         WHERE pasien.NIK = '${nik}';`;
+      let qry = `SELECT * FROM pasien WHERE NIK = '${nik}';`;
       console.log(qry);
       let hasil = await connection.execQry(qry);
       let response = {
@@ -109,6 +100,7 @@ let pasien = {
     try {
       let qry = `SELECT * FROM pasien`;
       let hasil = await connection.execQry(qry);
+      console.log(hasil);
       let response = {
         code: 200,
         message: "success",
