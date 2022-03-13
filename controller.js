@@ -86,11 +86,11 @@ let pasien = {
         return hasil;
       } else {
         let response = {
-          code: 200,
+          code: 400,
           message: "error",
-          data: "data kosong",
+          data: [],
         };
-        res.status(200).send(response);
+        res.status(400).send(response);
         return hasil;
       }
 
