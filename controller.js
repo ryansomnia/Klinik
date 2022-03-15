@@ -17,7 +17,7 @@ let pasien = {
     }
 
     try {
-      let qry = `SELECT * FROM pasien WHERE NIK = '${nik}';`;
+      let qry = `SELECT * FROM pasien WHERE NIK LIKE '%${nik}%'`;
       console.log(qry);
       let hasil = await connection.execQry(qry);
       let response = {
